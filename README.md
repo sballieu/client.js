@@ -11,6 +11,11 @@ Install it:
 npm install lc-client #for adding it to your $PATH add -g
 ```
 
+When you get this error while installing:
+``` ../lib/kerberos.h:5:27: fatal error: gssapi/gssapi.h: No such file or directory
+Solution
+``` sudo apt-get install libkrb5-dev
+
 For use on the command line:
 ```bash
 # uses by default the config-example.json which comes with this repo
