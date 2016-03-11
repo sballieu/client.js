@@ -2,5 +2,6 @@
   "arrivalStop":"8892007" ,
   "departureStop": "8892205",
   "departureTime": "2015-10-12T08:00",
-  "wheelchair_accessible": true
+  "wheelchair_accessible": true,
+  "min_transfer_time": 60
 }
