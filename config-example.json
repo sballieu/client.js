@@ -1,3 +1,5 @@
 {
-  "entrypoints" : ["http://belgianrail.linkedconnections.org/connections"]
+  "entrypoints" : ["http://belgianrail.linkedconnections.org/connections"],
+  "wheelchair_trips": "http://linkedconnections.me/trips",
+  "wheelchair_stops": "http://linkedconnections.me/stops"
 }

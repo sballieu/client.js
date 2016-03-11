@@ -32,6 +32,7 @@
     "path": "^0.12.7",
     "q": "^1.4.1",
     "request": "^2.64.0",
-    "uritemplate": "^0.3.4"
+    "uritemplate": "^0.3.4",
+    "urllib-sync": "^1.1.1"
   }
 }
