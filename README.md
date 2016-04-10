@@ -1,6 +1,6 @@
 # Linked Connections Client for javascript
 
-Status: _not functional (first dummy results)_
+Status: _Proof of Concept_
 
 A javascript library to use intermodal route planning advice in the browser or in your nodejs applications.
 
@@ -19,22 +19,53 @@ Solution
 For use on the command line:
 ```bash
 # uses by default the config-example.json which comes with this repo
-lcc -c config.json '{}'
+lcc -c config.json '{"arrivalStop" : "", "departureStop" : "", "departureTime": ""}'
 ```
 
+You can also use the demo queries added in the queries folder.
+
 Use it as a library:
-```bash
+```javascript
 var Client = require('lc-client');
 var planner = new Client({"entrypoints" : ["http://belgianrail.linkedconnections.org/"]});
-var resultStream = planner.query({"query":"object"});
-resultStream.on('data', function (path) {
+planner.query({"arrivalStop" : "", "departureStop" : "", "departureTime": ""}, function (resultStream, source) {
+  resultStream.on('result', function (path) {
     console.log(path);
+  });
+  resultStream.on('data', function (connection) {
+    console.log(connection);
+    //if you're not interested anymore, you can stop the processing by doing this
+    if (stop_condition) {
+      source.close();
+    }
+  });
+  //you can also count the number of HTTP requests done by the interface as follows
+  source.on('request', function (url) {
+    console.log('Requesting', url);
+  });
+  //you can also catch when a response is generated HTTP requests done by the interface as follows
+  source.on('response', function (url) {
+    console.log('Response received for', url);
+  });
 });
 ```
 
 Using it in the browser works in a similar way, by e.g., using browserify to generate a build file that can be used in the browser
 ```bash
 browserify lib/lc-client.js -d -p [minifyify --no-map] > dist/build.js
+```
+
+Within your script, you also use the Fetcher to have a stream of all connections:
+
+```javascript
+//1. Instantiate a fetcher
+var fetcher = new require('lc-client').Fetcher({"entrypoints" : ["http://belgianrail.linkedconnections.org/"]});
+//2. Use an empty query to get all connections from the sources configured in the fetcher
+fetcher.buildConnectionsStream({}, function (connectionsStream) {
+  connectionsStream.on('data', function (connection) {
+    //do something with connection here
+  });
+});
 ```
 
 ## How it works
