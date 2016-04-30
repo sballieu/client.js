@@ -1,6 +1,7 @@
 {
   "entrypoints" : ["http://belgianrail.linkedconnections.org/connections"],
-  "wheelchair_trips": "http://linkedconnections.me/trips",
-  "wheelchair_stops": "http://linkedconnections.me/stops",
-  "transfer_times": "http://linkedconnections.me/transfers"
+  "wheelchair_trips": "http://linkedconnections.me3001/trips",
+  "wheelchair_stops": "http://linkedconnections.me:3000/stops",
+  "transfer_times": "http://linkedconnections.me:3002/transfers",
+  "enableCache" : false
 }
