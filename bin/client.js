@@ -33,6 +33,12 @@ if (!q) {
 
 var client = new Client(config),
     count = 0;
+    totalBytesTransfered = 0;
+
+client._http.on('downloaded', function (download) {
+    totalBytesTransfered += download.totalBytes;
+});
+
 client.query(q, function (stream, source, connectionsStream) {
   console.log('Querying ' + config.entrypoints.length + ' data source(s).');
   var httpStartTimes = {};
@@ -67,6 +73,7 @@ client.query(q, function (stream, source, connectionsStream) {
       sum += httpResponseTimes[url];
     }
     console.log("Downloading data over HTTP adds up to", sum, "ms");
+    console.log(Math.round(totalBytesTransfered/(1024*1024)*100)/100 + "MB transfered while answering this query");
   });
   stream.on('error', function (error) {
     console.error(error);
