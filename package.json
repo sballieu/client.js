@@ -37,7 +37,8 @@
     "path": "^0.12.7",
     "q": "^1.4.1",
     "uritemplate": "^0.3.4",
-    "wreck": "^7.2.0"
+    "wreck": "^7.2.0",
+    "promise": "^7.1.1"
   },
   "browser": {
     "./lib/http/NodeHttpFetcher.js": "./lib/http/BrowserHttpFetcher.js"

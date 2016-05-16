@@ -1,5 +1,6 @@
 {
   "arrivalStop":"8400058" ,
   "departureStop": "8892205",
-  "departureTime": "2015-10-12T08:00"
+  "departureTime": "2015-10-12T08:00",
+  "minimumTransferTime": 60
 }
