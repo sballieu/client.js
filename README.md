@@ -16,6 +16,10 @@ For use on the command line:
 # uses by default the config-example.json which comes with this repo
 lcc -c config.json '{"arrivalStop" : "", "departureStop" : "", "departureTime": ""}'
 ```
+Optionally you can specify the minium transfer time:
+```bash
+lcc -c config.json '{"arrivalStop" : "", "departureStop" : "", "departureTime": "", "minimumTransferTime": 60}'
+```
 
 You can also use the demo queries added in the queries folder.
 
