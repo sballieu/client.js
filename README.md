@@ -76,7 +76,7 @@ fetcher.buildConnectionsStream({}, function (connectionsStream) {
 });
 ```
 
-Optionally you can specify a transfers times server to enable dynamic transfer times depeding on the stops of the transfer:
+Optionally you can specify a transfer times server to enable dynamic transfer times depeding on the stops of the transfer:
 ```javascript
 var planner = new Client({
   "entrypoints" : ["http://belgianrail.linkedconnections.org/"],
@@ -111,7 +111,7 @@ The transfer times server should return JSONLD pages of the form:
 ...
 ]
 ```
-An example transfers times server that returns transfer times from a GTFS transfer.txt file can be found at: https://github.com/sballieu/transfers-server
+An example transfer times server that returns transfer times from a GTFS transfer.txt file can be found at: https://github.com/sballieu/transfers-server
 
 ## How it works
 
