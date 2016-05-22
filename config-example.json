@@ -1,5 +1,4 @@
 {
   "entrypoints" : ["http://belgianrail.linkedconnections.org/connections"],
-  "transferTimes" : "http://localhost:8080/",
   "enableCache" : true
 }
