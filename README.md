@@ -16,6 +16,10 @@ For use on the command line:
 # uses by default the config-example.json which comes with this repo
 lcc -c config.json '{"arrivalStop" : "", "departureStop" : "", "departureTime": ""}'
 ```
+Optionally you can specify the minium transfer time:
+```bash
+lcc -c config.json '{"arrivalStop" : "", "departureStop" : "", "departureTime": "", "minimumTransferTime": 60}'
+```
 
 You can also use the demo queries added in the queries folder.
 
@@ -71,6 +75,43 @@ fetcher.buildConnectionsStream({}, function (connectionsStream) {
   });
 });
 ```
+
+Optionally you can specify a transfers times server to enable dynamic transfer times depeding on the stops of the transfer:
+```javascript
+var planner = new Client({
+  "entrypoints" : ["http://belgianrail.linkedconnections.org/"],
+  "transferTimes" : "http://transfers.linkedconnections.me/"
+});
+```
+The transfer times server should return JSONLD pages of the form:
+```javascript
+{
+    "@context": {
+      "gtfs": "http://vocab.gtfs.org/terms#",
+      "origin_stop": {
+        "@id": "gtfs:originStop",
+        "@type": "@id" },
+    "destination_stop": {
+        "@id": "gtfs:destinationStop",
+        "@type": "@id" },
+    "transfer_type": {
+        "@id": "gtfs:TransferType",
+        "@type": "@id" },
+    "min_transfer_time": {
+        "@id": "gtfs:minimumTransferTime",
+        "@type": "@id" }
+},
+"@graph": [
+{
+    "origin_stop": "...",
+    "destination_stop": "...",
+    "min_transfer_time": "...",
+    "transfer_type": "..."
+},
+...
+]
+```
+An example transfers times server that returns transfer times from a GTFS transfer.txt file can be found at: https://github.com/sballieu/transfers-server
 
 ## How it works
 
